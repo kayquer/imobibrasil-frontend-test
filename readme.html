@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste Prático – Programador Front-end Pleno | ImobiBrasil</title>
+<style>
+    :root {
+        --primary: #009688;
+        --secondary: #004d40;
+        --light: #f9f9f9;
+        --dark: #222;
+        --accent: #ff9800;
+        --font-body: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    body {
+        font-family: var(--font-body);
+        background: var(--light);
+        color: var(--dark);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    header {
+        background: linear-gradient(135deg, #199950, #01451e);
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    header img {
+        max-width: 180px;
+        margin-bottom: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+
+    main {
+        max-width: 900px;
+        margin: auto;
+        padding: 2rem 1rem;
+        background: white;
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        color: var(--primary);
+        border-bottom: 3px solid var(--accent);
+        padding-bottom: 0.3rem;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    ul {
+        padding-left: 1.2rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    .highlight {
+        background: var(--accent);
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .cta {
+        background: var(--primary);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 6px;
+        margin-top: 2rem;
+    }
+
+    footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.85rem;
+        background: var(--secondary);
+        color: #fff;
+    }
+
+    @media print {
+        body {
+            background: white;
+        }
+        header {
+            color: black;
+            background: none;
+        }
+        .cta {
+            background: none;
+            color: black;
+            border: 1px solid #ccc;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="https://ajuda.imobibrasil.com.br/wp-content/uploads/2022/01/cropped-imobibrasil.png" alt="ImobiBrasil Logo">
+    <h1>Teste Prático – Programador Front-end Pleno</h1>
+</header>
+
+<main>
+    <section>
+        <h2>🎯 Objetivo</h2>
+        <p>
+            Criar uma landing page única para a <strong>ImobiBrasil</strong> que combine os melhores elementos das diferentes versões analisadas, tanto em React quanto em HTML estático, com foco em <strong>design moderno</strong>, <strong>responsividade</strong>, <strong>performance</strong> e <strong>experiência do usuário</strong>.
+        </p>
+    </section>
+
+    <section>
+        <h2>📂 Fontes de Conteúdo</h2>
+        <ul>
+            <li>Qualquer material disponível no site oficial <a href="https://imobibrasil.com.br" target="_blank">imobibrasil.com.br</a> – incluindo logotipo, descrições, imagens e outros elementos.</li>
+            <li>Artigos e novidades do <a href="https://ajuda.imobibrasil.com.br/" target="_blank">Portal de Ajuda</a> para complementar textos e conteúdo.</li>
+            <li>Elementos visuais, cores, tipografia e animações de qualquer modelo fornecido — <strong>o candidato está livre</strong> para definir visual e estilo.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>📋 Requisitos da Landing Page</h2>
+        <ul>
+            <li><strong>Design Moderno</strong> com gradientes, animações e elementos visuais atrativos.</li>
+            <li><strong>Layout responsivo</strong> (mobile-first).</li>
+            <li>Pelo menos <span class="highlight">7 seções completas</span>.</li>
+            <li>Uso de <strong>HTML5 semântico</strong>, <strong>CSS3</strong> (Flexbox e Grid) e <strong>JavaScript ES6+</strong> modularizado.</li>
+            <li>Ícones (Lucide ou similar).</li>
+            <li>Funcionalidades: tabs, contadores animados, hover effects, accordion no FAQ, navegação mobile funcional.</li>
+            <li>No mínimo <span class="highlight">3 animações customizadas</span> (scroll, hover e carregamento).</li>
+            <li>Otimização de imagens (preferencialmente WebP).</li>
+            <li>Carregamento em até 3 segundos.</li>
+            <li>Acessibilidade básica (`aria-*`, roles).</li>
+            <li>Pontuação mínima de 80 no Google Lighthouse (Performance e Acessibilidade).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🛠️ Instruções para o Candidato</h2>
+        <ol>
+            <li>Usar apenas HTML, CSS e JavaScript vanilla.</li>
+            <li>Garantir que a página seja totalmente responsiva.</li>
+            <li>É permitido usar conteúdos e recursos dos links fornecidos.</li>
+            <li>Entregar HTML, CSS e JS separados.</li>
+            <li>Incluir breve documentação e README com instruções.</li>
+            <li>(Opcional) Incluir diagrama simples da estrutura de arquivos.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>✅ Critérios de Avaliação</h2>
+        <ul>
+            <li><strong>Qualidade do Código</strong>: organização, semântica, clareza.</li>
+            <li><strong>Design e UX</strong>: atratividade, responsividade, acessibilidade.</li>
+            <li><strong>Funcionalidade</strong>: interações e animações funcionando corretamente.</li>
+            <li><strong>Inovação</strong>: uso criativo dos elementos e adições únicas.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>⏳ Prazo</h2>
+        <p>O candidato terá <span class="highlight">7 dias</span> para execução e entrega.</p>
+    </section>
+
+    <section>
+        <h2>🌟 Diferenciais</h2>
+        <ul>
+            <li>Uso de variáveis CSS.</li>
+            <li>Técnicas modernas de layout.</li>
+            <li>JavaScript eficiente e sem frameworks.</li>
+            <li>Design alinhado à identidade da ImobiBrasil.</li>
+            <li>Performance otimizada.</li>
+            <li>Acessibilidade avançada.</li>
+        </ul>
+    </section>
+
+    <div class="cta">
+        Boa sorte! Mostre sua criatividade e habilidades técnicas.
+    </div>
+</main>
+
+<footer>
+    ImobiBrasil © 2025 – Teste Prático Front-end
+</footer>
+
+</body>
+</html>

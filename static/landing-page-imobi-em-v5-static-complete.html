@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#2ca62f"/>
+    <meta name="description" content="ImobiBrasil V5 - Sistema Completo para Imobiliária, CRM e Funil de Vendas com IA. Integração com Portais, WhatsApp Lead. Teste grátis por 7 dias!"/>
+    <title>ImobiBrasil V5 - Sistema para Imobiliária, CRM e Funil de Vendas</title>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Core Visual System - Hybrid */
+        :root {
+          --bg-page: #ffffff;
+          --bg-card: #ffffff;
+          --bg-section: rgba(0, 0, 0, 0.02);
+
+          --text-primary: rgb(0, 55, 32);
+          --text-body: rgb(14, 15, 12);
+          --text-secondary: rgb(131, 146, 140);
+          --text-muted: rgb(175, 183, 180);
+
+          --border-light: rgba(0, 0, 0, 0.1);
+          --border-medium: rgba(0, 0, 0, 0.2);
+          --border-strong: rgba(0, 0, 0, 0.3);
+
+          --accent-primary: #2ca62f;
+          --accent-strong: #238a26;
+          --accent-text: rgb(13, 121, 22);
+          --accent-wash: rgba(44, 166, 47, 0.08);
+
+          --gradient-hero: radial-gradient(at 53% 78%, hsla(60,100%,50%,0.2) 0px, transparent 50%),
+                           radial-gradient(at 71% 91%, hsla(108,100%,40%,0.22) 0px, transparent 50%),
+                           radial-gradient(at 31% 91%, hsla(30,100%,50%,0.12) 0px, transparent 50%);
+
+          --gradient-button: linear-gradient(to bottom right, var(--accent-primary), var(--accent-strong));
+        }
+
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+            background: var(--bg-page); 
+            color: var(--text-body); 
+            margin: 0;
+            padding: 0;
+        }
+        
+        .heading-1 { font-weight: 700; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 0.95; letter-spacing: -0.02em; color: var(--text-primary); }
+        .heading-2 { font-weight: 600; font-size: clamp(1.875rem, 4vw, 3rem); line-height: 1; letter-spacing: -0.015em; color: var(--text-primary); }
+        .heading-3 { font-weight: 600; font-size: clamp(1.25rem, 3vw, 1.5rem); line-height: 1.2; letter-spacing: -0.01em; color: var(--text-primary); }
+        .body-large { font-weight: 400; font-size: clamp(1.125rem, 2.5vw, 1.25rem); line-height: 1.6; color: var(--text-body); }
+        .body-medium { font-weight: 400; font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.5; color: var(--text-body); }
+        .body-small { font-weight: 400; font-size: 0.875rem; line-height: 1.4; color: var(--text-secondary); }
+
+        .nav-header { 
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50; 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 0.5rem 0.75rem; height: 3.5rem; 
+            background: rgba(255, 255, 255, 0.6); 
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); 
+            border: 0.5px solid var(--border-light); border-radius: 9999px; 
+            margin: 1rem auto; max-width: 1100px; 
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
+        }
+        .nav-left { display: flex; align-items: center; gap: 0.5rem; }
+        .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-primary); box-shadow: 0 0 0 4px var(--accent-wash); }
+        .nav-links { display: none; gap: 0.25rem; }
+        .nav-actions { display: none; gap: 0.5rem; }
+        @media (min-width: 900px) { .nav-links { display: flex; } .nav-actions { display: flex; } }
+
+        .nav-link { 
+            color: var(--text-secondary); text-decoration: none; font-weight: 500; 
+            padding: 6px 12px; border-radius: 9999px; 
+            transition: background 0.2s ease, color 0.2s ease; 
+        }
+        .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
+
+        .hero-section { 
+            background: var(--gradient-hero); min-height: 90vh; 
+            display: flex; align-items: center; padding: 7rem 1rem 3rem; 
+        }
+        .hero-content { 
+            max-width: 1100px; margin: 0 auto; 
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; 
+        }
+        @media (max-width: 900px) { .hero-content { grid-template-columns: 1fr; } }
+        .hero-title { margin: 0 0 1rem; }
+        .hero-subtitle { color: var(--text-secondary); margin: 0 0 1.5rem; }
+
+        .btn-primary { 
+            background: var(--gradient-button); color: #fff; border: none; border-radius: 9999px; 
+            padding: 14px 22px; font-weight: 700; cursor: pointer; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; min-height: 48px; 
+            display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(44,166,47,0.25); }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-secondary { 
+            background: transparent; color: var(--text-primary); border: 1px solid var(--border-light); 
+            border-radius: 9999px; padding: 14px 22px; font-weight: 600; cursor: pointer; 
+            transition: background 0.2s ease, transform 0.2s ease; text-decoration: none; display: inline-flex; align-items: center;
+        }
+        .btn-secondary:hover { background: rgba(0,0,0,0.05); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+        .section { padding: 4rem 0; }
+        .section-muted { background: var(--bg-section); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-1 { gap: 0.25rem; } .gap-2 { gap: 0.5rem; } .gap-3 { gap: 0.75rem; } .gap-4 { gap: 1rem; } .gap-6 { gap: 1.5rem; } .gap-8 { gap: 2rem; }
+
+        .card { 
+            background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; 
+            padding: 1rem; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; 
+        }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); border-color: var(--border-medium); }
+        .glass { 
+            background: rgba(255,255,255,0.6); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); 
+            border: 1px solid rgba(255,255,255,0.4); 
+        }
+
+        .dashboard { 
+            border-radius: 16px; border: 1px solid var(--border-light); overflow: hidden; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06); background: white;
+        }
+        .dashboard-header { 
+            background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0)); 
+            padding: 0.75rem 1rem; display: flex; align-items: center; gap: 6px; 
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #e9ecef; }
+        .chart-bar { height: 10px; border-radius: 999px; background: rgba(0,0,0,0.06); overflow: hidden; }
+        .chart-fill { height: 10px; background: var(--accent-primary); border-radius: 999px; }
+        .badge { 
+            border-radius: 9999px; border: 1px solid var(--border-light); padding: 6px 12px; 
+            font-weight: 600; color: var(--accent-text); background: var(--accent-wash); 
+        }
+
+        /* Feature tabs */
+        .tabs-wrap { background: #fff; border: 1px solid var(--border-light); border-radius: 16px; padding: 0.5rem; }
+        .tablist { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tab-trigger { 
+            padding: 8px 14px; border-radius: 9999px; border: 1px solid var(--border-light); 
+            background: #fff; cursor: pointer; color: var(--text-secondary); font-weight: 600; 
+        }
+        .tab-trigger.active { background: var(--accent-wash); color: var(--accent-text); border-color: var(--accent-primary); }
+
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+        .kpi { border: 1px solid var(--border-light); border-radius: 12px; padding: 12px; background: #fff; }
+
+        /* Hero chips */
+        .hero-chips { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+        .chip { 
+            padding: 6px 10px; border-radius: 9999px; border: 1px solid var(--border-light); 
+            background: #fff; cursor: pointer; color: var(--text-secondary); font-weight: 600; 
+        }
+        .chip.active { background: var(--accent-wash); color: var(--accent-text); border-color: var(--accent-primary); }
+
+        /* Footer & misc */
+        .plan { 
+            position: relative; padding: 1.25rem; border-radius: 16px; 
+            border: 1px solid var(--border-light); background: #fff; 
+        }
+        .plan.highlight { border-color: var(--accent-primary); box-shadow: 0 12px 32px rgba(44,166,47,0.15); }
+        .price { font-weight: 800; font-size: clamp(2rem, 4vw, 2.5rem); color: var(--text-primary); }
+        .toggle { display: flex; align-items: center; gap: 12px; }
+        .footer { padding: 2rem 0; border-top: 1px solid var(--border-light); color: var(--text-secondary); }
+        .anchor { color: var(--text-secondary); text-decoration: none; }
+        .anchor:hover { color: var(--text-primary); text-decoration: underline; }
+        
+        /* Utility classes */
+        .mt-1{margin-top:0.25rem} .mt-2{margin-top:0.5rem} .mt-3{margin-top:0.75rem} .mt-4{margin-top:1rem} .mt-6{margin-top:1.5rem} .mt-8{margin-top:2rem} .mt-10{margin-top:2.5rem}
+        .mb-1{margin-bottom:0.25rem} .mb-2{margin-bottom:0.5rem} .mb-4{margin-bottom:1rem} .mb-6{margin-bottom:1.5rem} .mb-8{margin-bottom:2rem}
+        .py-6{padding-top:1.5rem;padding-bottom:1.5rem} .py-8{padding-top:2rem;padding-bottom:2rem} .py-10{padding-top:2.5rem;padding-bottom:2.5rem}
+        .p-1{padding:0.25rem} .p-2{padding:0.5rem} .p-3{padding:0.75rem} .p-4{padding:1rem} .p-6{padding:1.5rem} .p-8{padding:2rem}
+
+        .btn-primary:focus, .btn-secondary:focus, .nav-link:focus { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
+        ::selection { background: var(--accent-wash); }
+
+        /* Progress bar */
+        .progress { width: 100%; height: 8px; background: rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent-primary); border-radius: 4px; transition: width 0.3s ease; }
+
+        /* Input styles */
+        .input { 
+            border: 1px solid var(--border-light); border-radius: 8px; padding: 12px 16px; 
+            font-size: 1rem; background: white; color: var(--text-body); min-width: 260px;
+        }
+        .input:focus { outline: 2px solid var(--accent-primary); outline-offset: 2px; border-color: var(--accent-primary); }
+
+        /* Switch styles */
+        .switch { 
+            position: relative; display: inline-block; width: 44px; height: 24px; 
+            background: var(--border-light); border-radius: 12px; cursor: pointer; transition: background 0.2s;
+        }
+        .switch.checked { background: var(--accent-primary); }
+        .switch-thumb { 
+            position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; 
+            background: white; border-radius: 50%; transition: transform 0.2s; 
+        }
+        .switch.checked .switch-thumb { transform: translateX(20px); }
+
+        /* Accordion styles */
+        .accordion-item { border: 1px solid var(--border-light); border-radius: 8px; margin-bottom: 8px; }
+        .accordion-trigger { 
+            width: 100%; padding: 16px; background: none; border: none; text-align: left; 
+            font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .accordion-content { padding: 0 16px 16px; display: none; }
+        .accordion-item.open .accordion-content { display: block; }
+
+        /* Tab content styles */
+        .tab-content { display: none; margin-top: 16px; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="nav-header">
+        <div class="nav-left">
+            <span class="brand-dot"></span>
+            <a href="#" class="heading-3" style="text-decoration: none; color: var(--text-primary);">ImobiBrasil</a>
+        </div>
+        <nav class="nav-links">
+            <a class="nav-link" href="#recursos">Recursos</a>
+            <a class="nav-link" href="#integracoes">Integrações</a>
+            <a class="nav-link" href="#resultados">Resultados</a>
+            <a class="nav-link" href="#precos">Preços</a>
+            <a class="nav-link" href="#faq">FAQ</a>
+        </nav>
+        <div class="nav-actions">
+            <a class="btn-secondary" href="#precos">Ver Planos</a>
+            <a class="btn-primary" href="https://wa.me/5518988227436">Entrar</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div>
+                    <h1 class="hero-title heading-1">Sistema Completo para Imobiliárias</h1>
+                    <p class="hero-subtitle body-large">CRM, Funil de Vendas, Integração com Portais e Automação Inteligente.</p>
+                    <form style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;" onsubmit="handleTrialSubmit(event)">
+                        <input type="email" placeholder="Seu e-mail profissional" class="input" id="trial-email" required />
+                        <button type="submit" class="btn-primary">
+                            Teste Grátis por 7 Dias 
+                            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                        </button>
+                        <a href="#precos" class="btn-secondary">Ver planos</a>
+                    </form>
+                    <div class="hero-chips">
+                        <button class="chip active" onclick="setMode('crm')">CRM de Vendas</button>
+                        <button class="chip" onclick="setMode('automacao')">Automação Inteligente</button>
+                        <button class="chip" onclick="setMode('integracoes')">Integrações em Tempo Real</button>
+                    </div>
+
+                    <div class="grid-3 mt-6">
+                        <div class="card glass p-3">
+                            <div class="heading-3" style="display: flex; align-items: baseline; gap: 6px;">
+                                <span id="stat-imobiliarias">15.000</span>
+                                <span class="body-small" style="color: var(--text-secondary);">+</span>
+                            </div>
+                            <div class="body-small" style="color: var(--text-secondary);">Imobiliárias Ativas</div>
+                        </div>
+                        <div class="card glass p-3">
+                            <div class="heading-3" style="display: flex; align-items: baseline; gap: 6px;">
+                                <span id="stat-imoveis">2.000.000</span>
+                                <span class="body-small" style="color: var(--text-secondary);">+</span>
+                            </div>
+                            <div class="body-small" style="color: var(--text-secondary);">Imóveis Gerenciados</div>
+                        </div>
+                        <div class="card glass p-3">
+                            <div class="heading-3" style="display: flex; align-items: baseline; gap: 6px;">
+                                <span id="stat-vendas">40</span>
+                                <span class="body-small" style="color: var(--text-secondary);">%</span>
+                            </div>
+                            <div class="body-small" style="color: var(--text-secondary);">Aumento nas Vendas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="dashboard">
+                        <div class="dashboard-header">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="heading-3">Painel de Vendas</div>
+                                <span class="badge">IA ativa</span>
+                            </div>
+                            <div class="grid-3">
+                                <div class="card">
+                                    <div class="p-4">
+                                        <div class="body-small">Conversão</div>
+                                        <div class="heading-2" id="kpi-conversao">18%</div>
+                                        <div class="progress mt-2">
+                                            <div class="progress-fill" id="progress-conversao" style="width: 18%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="p-4">
+                                        <div class="body-small">Tempo Médio</div>
+                                        <div class="heading-2" id="kpi-tempo">5d</div>
+                                        <div class="progress mt-2">
+                                            <div class="progress-fill" id="progress-tempo" style="width: 50%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="p-4">
+                                        <div class="body-small">Satisfação</div>
+                                        <div class="heading-2" id="kpi-satisfacao">92%</div>
+                                        <div class="progress mt-2">
+                                            <div class="progress-fill" id="progress-satisfacao" style="width: 92%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="recursos" class="section">
+            <div class="container">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="heading-2">IA + Automação para Resultados Reais</h2>
+                    <span class="badge" style="display: inline-flex; align-items: center; gap: 6px;">
+                        <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i> Nova geração
+                    </span>
+                </div>
+
+                <!-- Feature Tabs -->
+                <div class="tabs-wrap">
+                    <div class="tablist">
+                        <button class="tab-trigger active" onclick="showTab('crm')">CRM de Vendas</button>
+                        <button class="tab-trigger" onclick="showTab('automacao')">Automação Inteligente</button>
+                        <button class="tab-trigger" onclick="showTab('integracoes')">Integrações em Tempo Real</button>
+                    </div>
+
+                    <div id="tab-crm" class="tab-content active">
+                        <div class="grid-3">
+                            <div class="card p-4" style="grid-column: span 2;">
+                                <div class="heading-3">CRM de Vendas</div>
+                                <p class="body-medium mt-2" style="color: var(--text-secondary);">Funil, distribuição de leads e painel de produtividade para sua equipe.</p>
+                                <ul class="mt-4" style="display: grid; gap: 8px;">
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Distribuição por regras
+                                    </li>
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Kanban com SLA
+                                    </li>
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Relatórios de conversão
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card p-4">
+                                <div class="body-small">Conversão</div>
+                                <div class="heading-2">18%</div>
+                                <div class="progress mt-2">
+                                    <div class="progress-fill" style="width: 18%;"></div>
+                                </div>
+                                <div class="body-small mt-2" style="color: var(--text-secondary);">Referência do cenário</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-automacao" class="tab-content">
+                        <div class="grid-3">
+                            <div class="card p-4" style="grid-column: span 2;">
+                                <div class="heading-3">Automação Inteligente</div>
+                                <p class="body-medium mt-2" style="color: var(--text-secondary);">Sequências omnichannel com IA para follow-ups que realmente convertem.</p>
+                                <ul class="mt-4" style="display: grid; gap: 8px;">
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Mensagens dinâmicas
+                                    </li>
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Gatilhos por evento
+                                    </li>
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Pontuação de leads
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card p-4">
+                                <div class="body-small">Conversão</div>
+                                <div class="heading-2">22%</div>
+                                <div class="progress mt-2">
+                                    <div class="progress-fill" style="width: 22%;"></div>
+                                </div>
+                                <div class="body-small mt-2" style="color: var(--text-secondary);">Referência do cenário</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-integracoes" class="tab-content">
+                        <div class="grid-3">
+                            <div class="card p-4" style="grid-column: span 2;">
+                                <div class="heading-3">Integrações em Tempo Real</div>
+                                <p class="body-medium mt-2" style="color: var(--text-secondary);">Publicação e sincronização automática com os principais portais e WhatsApp Business.</p>
+                                <ul class="mt-4" style="display: grid; gap: 8px;">
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> OLX, ZAP, VivaReal
+                                    </li>
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> WhatsApp Business API
+                                    </li>
+                                    <li class="flex items-center gap-2 body-small">
+                                        <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Webhook + CRM
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card p-4">
+                                <div class="body-small">Conversão</div>
+                                <div class="heading-2">16%</div>
+                                <div class="progress mt-2">
+                                    <div class="progress-fill" style="width: 16%;"></div>
+                                </div>
+                                <div class="body-small mt-2" style="color: var(--text-secondary);">Referência do cenário</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-3 mt-6">
+                    <div class="card p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="cpu" style="width: 22px; height: 22px; color: var(--accent-primary);"></i>
+                            <div class="heading-3">Gestão Imobiliária com IA</div>
+                        </div>
+                        <p class="body-medium" style="color: var(--text-secondary);">Distribuição automática de leads, matching inteligente de imóveis e analytics preditivo para prever conversões.</p>
+                        <ul class="mt-4" style="display: grid; gap: 8px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Descrição de imóveis gerada por IA
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Follow-ups automáticos por e-mail e WhatsApp
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Pontuação de leads com base em comportamento
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="git-branch" style="width: 22px; height: 22px; color: var(--accent-primary);"></i>
+                            <div class="heading-3">Otimização de Fluxos</div>
+                        </div>
+                        <p class="body-medium" style="color: var(--text-secondary);">CRM, anúncios e tarefas em um único lugar. Automatize cada etapa do funil com gatilhos e regras.</p>
+                        <ul class="mt-4" style="display: grid; gap: 8px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Kanban de oportunidades
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Automações por evento (ex: novo lead)
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Templates de sequências omnichannel
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="plug" style="width: 22px; height: 22px; color: var(--accent-primary);"></i>
+                            <div class="heading-3">Hub de Integrações</div>
+                        </div>
+                        <p class="body-medium" style="color: var(--text-secondary);">Conecte portais líderes e sincronize inventário em tempo real para eliminar retrabalho.</p>
+                        <ul class="mt-4" style="display: grid; gap: 8px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> OLX, ZAP, VivaReal
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> WhatsApp Business API
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Integração com CRM e calendários
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="section section-muted">
+            <div class="container">
+                <h2 class="heading-2 mb-4">Operações Centralizadas</h2>
+                <p class="body-medium" style="color: var(--text-secondary);">CRM, anúncios e tarefas em um único portal. Conecte gatilhos para automatizar cada etapa do funil.</p>
+                <div class="grid-3 mt-6">
+                    <div class="card p-4">
+                        <div class="heading-3" style="display: flex; gap: 8px; align-items: center;">
+                            <i data-lucide="gauge" style="width: 18px; height: 18px;"></i>Lead Capturado
+                        </div>
+                        <p class="body-small mt-2" style="color: var(--text-secondary);">Entrada via site, portais e WhatsApp</p>
+                        <div class="chart-bar mt-4">
+                            <div class="chart-fill" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <div class="heading-3" style="display: flex; gap: 8px; align-items: center;">
+                            <i data-lucide="cpu" style="width: 18px; height: 18px;"></i>Distribuição Inteligente
+                        </div>
+                        <p class="body-small mt-2" style="color: var(--text-secondary);">IA distribui leads por afinidade e performance</p>
+                        <div class="chart-bar mt-4">
+                            <div class="chart-fill" style="width: 55%;"></div>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <div class="heading-3" style="display: flex; gap: 8px; align-items: center;">
+                            <i data-lucide="message-square" style="width: 18px; height: 18px;"></i>Follow-up Omnichannel
+                        </div>
+                        <p class="body-small mt-2" style="color: var(--text-secondary);">Sequências automáticas por e-mail/WhatsApp</p>
+                        <div class="chart-bar mt-4">
+                            <div class="chart-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integrations Section -->
+        <section id="integracoes" class="section">
+            <div class="container">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="heading-2">Integrações Avançadas</h2>
+                    <span class="body-small" style="color: var(--text-secondary);">Sincronização em tempo real</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <span class="badge">OLX</span>
+                    <span class="badge">ZAP</span>
+                    <span class="badge">VivaReal</span>
+                    <span class="badge">WhatsApp Business</span>
+                    <span class="badge">Meta Leads</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultados" class="section section-muted">
+            <div class="container">
+                <h2 class="heading-2 mb-4">Resultados de Negócio</h2>
+                <div class="grid-3">
+                    <blockquote class="card p-4">
+                        <p class="body-medium">"+40% nas vendas em 3 meses. O funil com IA distribui leads certo para o corretor certo."</p>
+                        <footer class="body-small mt-2" style="color: var(--text-secondary);">Ana Lima • Diretora - Alfa Imóveis</footer>
+                    </blockquote>
+                    <blockquote class="card p-4">
+                        <p class="body-medium">"Economizamos 20 horas/semana com automações. Integração com portais é instantânea."</p>
+                        <footer class="body-small mt-2" style="color: var(--text-secondary);">João Pereira • CEO - CasaFácil</footer>
+                    </blockquote>
+                    <div class="card p-4">
+                        <div class="heading-3">Segurança e Confiabilidade</div>
+                        <ul class="mt-2" style="display: grid; gap: 6px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="shield" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Certificações do setor
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="shield" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Conformidade LGPD
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="shield" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Suporte 24/7
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="precos" class="section">
+            <div class="container">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="heading-2">Planos e Preços</h2>
+                    <div class="toggle">
+                        <span class="body-small" id="monthly-label" style="color: var(--text-primary);">Mensal</span>
+                        <div class="switch" id="pricing-switch" onclick="togglePricing()">
+                            <div class="switch-thumb"></div>
+                        </div>
+                        <span class="body-small" id="annual-label" style="color: var(--text-secondary);">Anual
+                            <span class="badge" style="margin-left: 6px;">2 meses grátis</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="grid-3">
+                    <div class="plan">
+                        <div class="body-small" style="color: var(--text-secondary);">Imobiliárias iniciantes</div>
+                        <div class="heading-3 mt-2">Starter</div>
+                        <div class="price mt-2">R$ <span id="price-starter">54,99</span><span id="period-starter">/mês</span></div>
+                        <ul class="mt-4" style="display: grid; gap: 8px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> CRM de Leads
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Publicação em 3 portais
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Descrições com IA (limite mensal)
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> WhatsApp integrado
+                            </li>
+                        </ul>
+                        <button class="btn-primary mt-4" onclick="selectPlan('starter')" style="width: 100%;">Começar agora</button>
+                    </div>
+                    <div class="plan highlight">
+                        <div class="body-small" style="color: var(--text-secondary);">Equipes em crescimento</div>
+                        <div class="heading-3 mt-2">Pro</div>
+                        <div class="price mt-2">R$ <span id="price-pro">149,00</span><span id="period-pro">/mês</span></div>
+                        <ul class="mt-4" style="display: grid; gap: 8px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Tudo do Starter
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Automação de follow-ups
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Matching inteligente
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Relatórios preditivos
+                            </li>
+                        </ul>
+                        <button class="btn-primary mt-4" onclick="selectPlan('pro')" style="width: 100%;">Começar agora</button>
+                    </div>
+                    <div class="plan">
+                        <div class="body-small" style="color: var(--text-secondary);">Operações avançadas</div>
+                        <div class="heading-3 mt-2">Enterprise</div>
+                        <div class="price mt-2">R$ <span id="price-enterprise">349,00</span><span id="period-enterprise">/mês</span></div>
+                        <ul class="mt-4" style="display: grid; gap: 8px;">
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Tudo do Pro
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Integrações personalizadas
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> SLA 24/7
+                            </li>
+                            <li class="flex items-center gap-2 body-small">
+                                <i data-lucide="check" style="width: 16px; height: 16px; color: var(--accent-primary);"></i> Consultoria dedicada
+                            </li>
+                        </ul>
+                        <button class="btn-primary mt-4" onclick="selectPlan('enterprise')" style="width: 100%;">Começar agora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section section-muted">
+            <div class="container">
+                <h2 class="heading-2 mb-4">Perguntas Frequentes</h2>
+                <div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            O teste é realmente gratuito?
+                            <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Sim. 7 dias completos com todos os recursos essenciais sem necessidade de cartão.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            Posso integrar com meu portal atual?
+                            <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Sim. Integramos com OLX, ZAP, VivaReal e WhatsApp Business API, além de CRMs populares.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                            A automação usa IA?
+                            <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Sim. Utilizamos IA para matching de imóveis, pontuação de leads, descrições e follow-ups.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="section" style="position: relative;">
+            <div class="container">
+                <div class="card glass p-6" style="display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                    <div>
+                        <div class="heading-2">Transforme sua imobiliária com ImobiBrasil</div>
+                        <p class="body-medium" style="color: var(--text-secondary);">Automatize processos, acelere vendas e ganhe previsibilidade.</p>
+                    </div>
+                    <a href="https://wa.me/5518988227436" class="btn-primary">
+                        Comece Agora <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+            <div class="body-small">© 2024 ImobiBrasil. Todos os direitos reservados.</div>
+            <div class="body-small" style="display: flex; gap: 12px;">
+                <a class="anchor" href="#">Privacidade</a>
+                <a class="anchor" href="#">Termos</a>
+                <a class="anchor" href="#faq">Ajuda</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Global state
+        let isAnnualPricing = false;
+        let currentMode = 'crm';
+
+        // Mock data
+        const featureTabs = {
+            crm: { conversao: 18, tempo: 5, satisfacao: 92 },
+            automacao: { conversao: 22, tempo: 3, satisfacao: 95 },
+            integracoes: { conversao: 16, tempo: 4, satisfacao: 90 }
+        };
+
+        const pricingData = {
+            monthly: { starter: 54.99, pro: 149.00, enterprise: 349.00 },
+            annual: { starter: 549.90, pro: 1490.00, enterprise: 3490.00 }
+        };
+
+        // Animated counter function
+        function animateCounter(element, target, duration = 1200) {
+            let start = 0;
+            const stepTime = Math.max(16, Math.floor(duration / 60));
+            const increment = Math.ceil(target / (duration / stepTime));
+
+            const timer = setInterval(() => {
+                start = Math.min(start + increment, target);
+                element.textContent = start.toLocaleString('pt-BR');
+                if (start >= target) clearInterval(timer);
+            }, stepTime);
+        }
+
+        // Initialize counters on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateCounter(document.getElementById('stat-imobiliarias'), 15000);
+            animateCounter(document.getElementById('stat-imoveis'), 2000000);
+            animateCounter(document.getElementById('stat-vendas'), 40);
+        });
+
+        // Mode switching for hero chips and KPIs
+        function setMode(mode) {
+            currentMode = mode;
+
+            // Update chip states
+            document.querySelectorAll('.chip').forEach(chip => chip.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update KPIs
+            const kpis = featureTabs[mode];
+            document.getElementById('kpi-conversao').textContent = kpis.conversao + '%';
+            document.getElementById('kpi-tempo').textContent = kpis.tempo + 'd';
+            document.getElementById('kpi-satisfacao').textContent = kpis.satisfacao + '%';
+
+            document.getElementById('progress-conversao').style.width = kpis.conversao + '%';
+            document.getElementById('progress-tempo').style.width = Math.max(5, 100 - kpis.tempo * 10) + '%';
+            document.getElementById('progress-satisfacao').style.width = kpis.satisfacao + '%';
+        }
+
+        // Tab switching
+        function showTab(tabId) {
+            // Update tab triggers
+            document.querySelectorAll('.tab-trigger').forEach(trigger => trigger.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        // Pricing toggle
+        function togglePricing() {
+            isAnnualPricing = !isAnnualPricing;
+            const switchEl = document.getElementById('pricing-switch');
+            const monthlyLabel = document.getElementById('monthly-label');
+            const annualLabel = document.getElementById('annual-label');
+
+            if (isAnnualPricing) {
+                switchEl.classList.add('checked');
+                monthlyLabel.style.color = 'var(--text-secondary)';
+                annualLabel.style.color = 'var(--text-primary)';
+
+                document.getElementById('price-starter').textContent = pricingData.annual.starter.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+                document.getElementById('price-pro').textContent = pricingData.annual.pro.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+                document.getElementById('price-enterprise').textContent = pricingData.annual.enterprise.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+                document.getElementById('period-starter').textContent = '/ano';
+                document.getElementById('period-pro').textContent = '/ano';
+                document.getElementById('period-enterprise').textContent = '/ano';
+            } else {
+                switchEl.classList.remove('checked');
+                monthlyLabel.style.color = 'var(--text-primary)';
+                annualLabel.style.color = 'var(--text-secondary)';
+
+                document.getElementById('price-starter').textContent = pricingData.monthly.starter.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+                document.getElementById('price-pro').textContent = pricingData.monthly.pro.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+                document.getElementById('price-enterprise').textContent = pricingData.monthly.enterprise.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+                document.getElementById('period-starter').textContent = '/mês';
+                document.getElementById('period-pro').textContent = '/mês';
+                document.getElementById('period-enterprise').textContent = '/mês';
+            }
+
+            localStorage.setItem('imobi_pricing_toggle', isAnnualPricing ? 'annual' : 'monthly');
+        }
+
+        // Accordion toggle
+        function toggleAccordion(trigger) {
+            const item = trigger.parentElement;
+            const isOpen = item.classList.contains('open');
+
+            // Close all accordion items
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('open');
+                const icon = item.querySelector('[data-lucide]');
+                icon.setAttribute('data-lucide', 'chevron-down');
+            });
+
+            // Open clicked item if it wasn't already open
+            if (!isOpen) {
+                item.classList.add('open');
+                const icon = trigger.querySelector('[data-lucide]');
+                icon.setAttribute('data-lucide', 'chevron-up');
+            }
+
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        // Form submission
+        function handleTrialSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('trial-email').value;
+
+            if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+
+            localStorage.setItem('imobibrasil_trial_email', email);
+            alert('Sucesso! Teste iniciado. Entraremos em contato em breve.');
+            document.getElementById('trial-email').value = '';
+        }
+
+        // Plan selection
+        function selectPlan(planId) {
+            localStorage.setItem('imobi_selected_plan', planId);
+            window.open('https://wa.me/5518988227436?text=Olá! Gostaria de começar com o plano ' + planId.charAt(0).toUpperCase() + planId.slice(1) + ' do ImobiBrasil.', '_blank');
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Load saved pricing preference
+            const savedPricing = localStorage.getItem('imobi_pricing_toggle');
+            if (savedPricing === 'annual') {
+                togglePricing();
+            }
+        });
+    </script>
+</body>
+</html>

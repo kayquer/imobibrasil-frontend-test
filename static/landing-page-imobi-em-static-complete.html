@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#109d59"/>
+    <meta name="description" content="ImobiBrasil - Sistema Completo para Imobiliária, CRM e Funil de Vendas. Integração com Portais, WhatsApp Lead. Teste grátis por 7 dias!"/>
+    <title>ImobiBrasil - Sistema para Imobiliária, CRM e Funil de Vendas</title>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        /* Colors */
+        :root {
+            --primary-green: #109d59;
+            --primary-yellow: #f7c200;
+            --dark-green: #0e8c4f;
+            --dark-yellow: #e6b000;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        /* Typography */
+        .text-4xl { font-size: 2.25rem; }
+        .text-7xl { font-size: 4.5rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.625; }
+
+        /* Colors */
+        .text-white { color: #ffffff; }
+        .text-gray-300 { color: var(--gray-300); }
+        .text-gray-400 { color: var(--gray-400); }
+        .text-gray-500 { color: var(--gray-500); }
+        .text-gray-600 { color: var(--gray-600); }
+        .text-gray-900 { color: var(--gray-900); }
+
+        /* Background */
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-50 { background-color: var(--gray-50); }
+        .bg-gray-100 { background-color: var(--gray-100); }
+        .bg-gray-900 { background-color: var(--gray-900); }
+
+        /* Flexbox */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+
+        /* Grid */
+        .grid { display: grid; }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+
+        /* Spacing */
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .pt-6 { padding-top: 1.5rem; }
+        .pt-8 { padding-top: 2rem; }
+        .pt-24 { padding-top: 6rem; }
+        .pb-16 { padding-bottom: 4rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-12 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .mr-2 { margin-right: 0.5rem; }
+
+        /* Positioning */
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-8 { bottom: 2rem; }
+        .z-10 { z-index: 10; }
+        .z-50 { z-index: 50; }
+
+        /* Sizing */
+        .w-4 { width: 1rem; }
+        .w-5 { width: 1.25rem; }
+        .w-6 { width: 1.5rem; }
+        .w-10 { width: 2.5rem; }
+        .h-4 { height: 1rem; }
+        .h-5 { height: 1.25rem; }
+        .h-6 { height: 1.5rem; }
+        .h-10 { height: 2.5rem; }
+        .h-40 { height: 10rem; }
+        .min-h-screen { min-height: 100vh; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-lg { max-width: 32rem; }
+
+        /* Border */
+        .border { border-width: 1px; }
+        .border-2 { border-width: 2px; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+
+        /* Effects */
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .backdrop-blur-sm { backdrop-filter: blur(4px); }
+        .overflow-hidden { overflow: hidden; }
+
+        /* Custom Styles */
+        .hero-section {
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 50%, var(--gray-900) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+        }
+
+        .hero-blob {
+            position: absolute;
+            width: 18rem;
+            height: 18rem;
+            border-radius: 50%;
+            mix-blend-mode: multiply;
+            animation: blob 7s infinite;
+        }
+
+        .hero-blob-1 {
+            top: -1rem;
+            right: -1rem;
+            background: rgba(16, 157, 89, 0.1);
+        }
+
+        .hero-blob-2 {
+            top: -1rem;
+            left: -1rem;
+            background: rgba(247, 194, 0, 0.1);
+            animation-delay: 2s;
+        }
+
+        .hero-blob-3 {
+            bottom: -2rem;
+            left: 5rem;
+            background: rgba(16, 157, 89, 0.1);
+            animation-delay: 4s;
+        }
+
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(90deg, rgba(16, 157, 89, 0.1), rgba(247, 194, 0, 0.1));
+            border: 1px solid rgba(16, 157, 89, 0.2);
+            border-radius: 9999px;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 1.5rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dashboard-mockup {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+            transform: rotate(1deg);
+            transition: transform 0.5s ease;
+        }
+
+        .dashboard-mockup:hover {
+            transform: rotate(0deg);
+        }
+
+        .floating-element {
+            position: absolute;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            animation: bounce-gentle 2s infinite;
+        }
+
+        .floating-element-yellow {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow));
+            color: var(--gray-900);
+        }
+
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .chart-bar {
+            background: linear-gradient(to top, var(--primary-green), rgba(16, 157, 89, 0.7));
+            border-radius: 0.5rem 0.5rem 0 0;
+            animation: grow-bar 1s ease-out;
+        }
+
+        .chart-bar-yellow {
+            background: linear-gradient(to top, var(--primary-yellow), rgba(247, 194, 0, 0.7));
+        }
+
+        @keyframes grow-bar {
+            from { height: 0; }
+            to { height: var(--bar-height); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            border-bottom: 1px solid var(--gray-100);
+            z-index: 50;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid transparent;
+            padding: 0.5rem 1rem;
+            height: 2.25rem;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-green);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid var(--gray-100);
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--gray-100);
+        }
+
+        /* Responsive */
+        @media (min-width: 1024px) {
+            .desktop-nav {
+                display: flex !important;
+            }
+            .desktop-cta {
+                display: flex !important;
+            }
+            .mobile-menu-btn {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .desktop-nav {
+                display: none !important;
+            }
+            .desktop-cta {
+                display: none !important;
+            }
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .text-7xl { font-size: 3rem; }
+            .hero-section { padding: 4rem 0; }
+        }
+
+        @media (max-width: 768px) {
+            .text-7xl { font-size: 2.5rem; }
+            .grid-cols-3 { grid-template-columns: 1fr; }
+            .flex-col { flex-direction: column; }
+            .space-x-4 > * + * { margin-left: 0; margin-top: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img
+                        src="https://imobibrasil.com.br/imagens/logo.png"
+                        alt="ImobiBrasil"
+                        style="height: 3rem; width: auto;"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <!-- Fallback logo if image fails -->
+                    <div style="display: none; align-items: center; gap: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-green), var(--dark-green)); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                            <span style="color: white; font-weight: bold; font-size: 1.125rem;">IB</span>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.25rem; color: var(--gray-900);">ImobiBrasil</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav" style="display: none; align-items: center; gap: 2rem;">
+                    <a href="#features" class="nav-link">Funcionalidades</a>
+                    <a href="#clients" class="nav-link">Clientes</a>
+                    <a href="#portals" class="nav-link">Integrações</a>
+                    <a href="#pricing" class="nav-link">Planos</a>
+                    <a href="#contact" class="nav-link">Contato</a>
+                </nav>
+
+                <!-- CTA Buttons -->
+                <div class="desktop-cta" style="display: none; align-items: center; gap: 1rem;">
+                    <a href="https://wa.me/5518988227436" class="btn btn-outline">
+                        Login
+                    </a>
+                    <a href="https://wa.me/5518988227436" class="btn btn-primary">
+                        Experimente Já
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <nav>
+                    <a href="#features" class="nav-link" onclick="closeMobileMenu()">Funcionalidades</a>
+                    <a href="#clients" class="nav-link" onclick="closeMobileMenu()">Clientes</a>
+                    <a href="#portals" class="nav-link" onclick="closeMobileMenu()">Integrações</a>
+                    <a href="#pricing" class="nav-link" onclick="closeMobileMenu()">Planos</a>
+                    <a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contato</a>
+                </nav>
+                <div class="btn-group">
+                    <a href="https://wa.me/5518988227436" class="btn btn-outline">Login</a>
+                    <a href="https://wa.me/5518988227436" class="btn btn-primary">Experimente Já</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Background pattern -->
+        <div class="hero-bg-pattern"></div>
+
+        <!-- Animated background elements -->
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 container pt-24 pb-16">
+            <div class="flex flex-col lg:flex-row items-center justify-between" style="min-height: calc(100vh - 6rem);">
+
+                <!-- Left Column - Text Content -->
+                <div style="flex: 1; padding-right: 3rem; text-align: center;">
+                    <div class="space-y-8 max-w-2xl" style="margin: 0 auto;">
+
+                        <!-- Trust Badge -->
+                        <div class="trust-badge">
+                            <div class="flex items-center space-x-1">
+                                <i data-lucide="star" style="width: 16px; height: 16px; color: var(--primary-yellow); fill: currentColor;"></i>
+                                <i data-lucide="star" style="width: 16px; height: 16px; color: var(--primary-yellow); fill: currentColor;"></i>
+                                <i data-lucide="star" style="width: 16px; height: 16px; color: var(--primary-yellow); fill: currentColor;"></i>
+                                <i data-lucide="star" style="width: 16px; height: 16px; color: var(--primary-yellow); fill: currentColor;"></i>
+                                <i data-lucide="star" style="width: 16px; height: 16px; color: var(--primary-yellow); fill: currentColor;"></i>
+                            </div>
+                            <span style="color: var(--primary-green); font-weight: 600; font-size: 0.875rem;">
+                                #1 Sistema para Imobiliárias
+                            </span>
+                            <i data-lucide="users" style="width: 16px; height: 16px; color: var(--primary-green);"></i>
+                        </div>
+
+                        <!-- Main Title -->
+                        <h1 class="text-4xl lg:text-7xl font-bold text-white leading-tight">
+                            <span class="block animate-fade-in-up">Sistema para Imobiliárias</span>
+                            <span class="block mt-2 animate-fade-in-up" style="color: var(--primary-yellow); animation-delay: 300ms;">CRM e Funil de Vendas</span>
+                            <span class="block mt-2 animate-fade-in-up" style="color: var(--primary-green); font-size: 0.8em; animation-delay: 500ms;">Integração com Portais</span>
+                            <span class="block mt-2 animate-fade-in-up" style="font-size: 0.6em; animation-delay: 700ms;">WhatsApp Lead</span>
+                        </h1>
+
+                        <!-- Subtitle -->
+                        <p class="text-xl text-gray-300 leading-relaxed animate-fade-in-up" style="animation-delay: 1000ms;">
+                            Faça um <strong style="color: var(--primary-yellow);">Teste Grátis</strong> e supere suas expectativas.
+                            Sistema completo integrado ao WhatsApp com gestão de leads inteligente.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6 animate-fade-in-up" style="animation-delay: 1200ms;">
+                            <a href="https://wa.me/5518988227436" class="btn-primary">
+                                <span>Teste por 7 dias Grátis</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                            </a>
+
+                            <a href="#video" class="btn-secondary">
+                                <i data-lucide="play" class="w-5 h-5 mr-2"></i>
+                                Vídeo Institucional
+                            </a>
+                        </div>
+
+                        <!-- Trust indicators -->
+                        <div class="flex flex-col sm:flex-row items-center gap-8 pt-8 text-gray-400 animate-fade-in-up" style="animation-delay: 1400ms;">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background: var(--primary-green);">
+                                    <i data-lucide="check" style="width: 12px; height: 12px; color: white;"></i>
+                                </div>
+                                <span class="text-sm">Teste gratuito por 7 dias</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background: var(--primary-green);">
+                                    <i data-lucide="check" style="width: 12px; height: 12px; color: white;"></i>
+                                </div>
+                                <span class="text-sm">Sem contrato de fidelidade</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background: var(--primary-green);">
+                                    <i data-lucide="check" style="width: 12px; height: 12px; color: white;"></i>
+                                </div>
+                                <span class="text-sm">Suporte especializado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Enhanced Visual -->
+                <div style="flex: 1; margin-top: 3rem; position: relative;">
+                    <div class="relative max-w-lg" style="margin: 0 auto;">
+
+                        <!-- Main dashboard mockup -->
+                        <div class="dashboard-mockup animate-fade-in-right">
+                            <div class="space-y-6">
+                                <!-- Header -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--primary-green), var(--dark-green));">
+                                            <span style="color: white; font-weight: bold; font-size: 0.875rem;">IB</span>
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold; color: var(--gray-900);">ImobiBrasil</p>
+                                            <p class="text-xs text-gray-500">Dashboard</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <div style="width: 12px; height: 12px; background: #ef4444; border-radius: 50%;"></div>
+                                        <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
+                                        <div style="width: 12px; height: 12px; background: #10b981; border-radius: 50%;"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Chart area -->
+                                <div class="h-40 rounded-lg flex items-end justify-center space-x-3 p-6" style="background: linear-gradient(135deg, var(--gray-50), var(--gray-100));">
+                                    <div class="chart-bar" style="width: 2.5rem; --bar-height: 5rem;"></div>
+                                    <div class="chart-bar chart-bar-yellow" style="width: 2.5rem; --bar-height: 8rem; animation-delay: 500ms;"></div>
+                                    <div class="chart-bar" style="width: 2.5rem; --bar-height: 4rem; animation-delay: 1000ms;"></div>
+                                    <div class="chart-bar chart-bar-yellow" style="width: 2.5rem; --bar-height: 7rem; animation-delay: 1500ms;"></div>
+                                </div>
+
+                                <!-- Enhanced Stats -->
+                                <div class="grid grid-cols-3 gap-4">
+                                    <div class="text-center rounded-lg p-4" style="background: rgba(16, 157, 89, 0.05);">
+                                        <div class="text-2xl font-bold mb-1" style="color: var(--primary-green);">150+</div>
+                                        <div class="text-xs text-gray-600">Leads Ativos</div>
+                                    </div>
+                                    <div class="text-center rounded-lg p-4" style="background: rgba(247, 194, 0, 0.05);">
+                                        <div class="text-2xl font-bold mb-1" style="color: var(--primary-yellow);">89%</div>
+                                        <div class="text-xs text-gray-600">Taxa Conversão</div>
+                                    </div>
+                                    <div class="text-center rounded-lg p-4" style="background: rgba(16, 157, 89, 0.05);">
+                                        <div class="text-2xl font-bold mb-1" style="color: var(--primary-green);">45</div>
+                                        <div class="text-xs text-gray-600">Vendas/Mês</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enhanced Floating elements -->
+                        <div class="floating-element" style="top: -1.5rem; right: -1.5rem;">
+                            <div style="font-size: 0.875rem; font-weight: bold;">+127 Leads</div>
+                            <div style="font-size: 0.75rem; opacity: 0.9;">Hoje</div>
+                        </div>
+
+                        <div class="floating-element floating-element-yellow" style="bottom: -1.5rem; left: -1.5rem; animation-delay: 1000ms;">
+                            <div style="font-size: 0.875rem; font-weight: bold;">WhatsApp ✓</div>
+                            <div style="font-size: 0.75rem;">Integrado</div>
+                        </div>
+
+                        <div style="position: absolute; top: 50%; right: -2rem; background: white; color: var(--gray-900); padding: 0.5rem 0.75rem; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); animation: pulse 2s infinite;">
+                            <div style="font-size: 0.75rem; font-weight: 600; color: var(--primary-green);">7 Portais</div>
+                            <div class="text-xs text-gray-600">Conectados</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8" style="left: 50%; transform: translateX(-50%); animation: bounce 2s infinite;">
+            <div style="width: 1.5rem; height: 2.5rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 9999px; display: flex; justify-content: center;">
+                <div style="width: 4px; height: 12px; background: rgba(255, 255, 255, 0.5); border-radius: 9999px; margin-top: 0.5rem; animation: pulse 2s infinite;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section bg-white">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">
+                    Recursos Completos para sua Imobiliária
+                </h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    Todas as ferramentas que você precisa para gerenciar leads, vendas e relacionamento com clientes.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8">
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 4rem; height: 4rem; background: rgba(16, 157, 89, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i data-lucide="filter" style="width: 24px; height: 24px; color: var(--primary-green);"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem;">Funil de Vendas</h3>
+                    <p style="color: var(--gray-600);">Defina e acompanhe toda jornada de compra do seu cliente</p>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 4rem; height: 4rem; background: rgba(16, 157, 89, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i data-lucide="user" style="width: 24px; height: 24px; color: var(--primary-green);"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem;">Vida do Cliente</h3>
+                    <p style="color: var(--gray-600);">Todas as informações de seus clientes em apenas um lugar</p>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 4rem; height: 4rem; background: rgba(16, 157, 89, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i data-lucide="home" style="width: 24px; height: 24px; color: var(--primary-green);"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem;">Imóveis Compatíveis</h3>
+                    <p style="color: var(--gray-600);">A ferramenta ideal para encontrar o imóvel certo para seu cliente</p>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 4rem; height: 4rem; background: rgba(16, 157, 89, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i data-lucide="download" style="width: 24px; height: 24px; color: var(--primary-green);"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem;">Documentos</h3>
+                    <p style="color: var(--gray-600);">Armazene de forma restrita documentos de imóveis, clientes e corretores</p>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 4rem; height: 4rem; background: rgba(16, 157, 89, 0.1); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i data-lucide="file-text" style="width: 24px; height: 24px; color: var(--primary-green);"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem;">Gerador de Contratos</h3>
+                    <p style="color: var(--gray-600);">Crie diversos contratos preenchendo poucas informações necessárias</p>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--primary-green), var(--dark-green)); border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(16, 157, 89, 0.3); color: white;">
+                    <div style="width: 4rem; height: 4rem; background: rgba(255, 255, 255, 0.2); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i data-lucide="network" style="width: 24px; height: 24px; color: white;"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Integração com Portais</h3>
+                    <p style="opacity: 0.9;">Integre seus imóveis em diversos portais de imóveis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section bg-gray-50">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">
+                    Preço Justo e Transparente
+                </h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600);">
+                    Sem pegadinhas, sem taxas escondidas. Apenas o melhor sistema do mercado.
+                </p>
+            </div>
+
+            <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 1.5rem; padding: 3rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--primary-green); margin-bottom: 0.5rem;">R$ 54,99</div>
+                    <div style="color: var(--gray-600); font-size: 1.125rem;">mensal</div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i data-lucide="check" style="width: 20px; height: 20px; color: var(--primary-green); margin-right: 0.75rem;"></i>
+                        <span>Sem contrato de fidelidade</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i data-lucide="check" style="width: 20px; height: 20px; color: var(--primary-green); margin-right: 0.75rem;"></i>
+                        <span>Sem tempo mínimo de permanência</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i data-lucide="check" style="width: 20px; height: 20px; color: var(--primary-green); margin-right: 0.75rem;"></i>
+                        <span>Suporte especializado incluído</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <i data-lucide="check" style="width: 20px; height: 20px; color: var(--primary-green); margin-right: 0.75rem;"></i>
+                        <span>Teste grátis por 7 dias</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="https://wa.me/5518988227436" class="btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
+                        Começar Teste Grátis
+                        <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                    </a>
+                    <p style="font-size: 0.875rem; color: var(--gray-500);">
+                        * R$ 40,00 / anual (para o órgão Registro.br)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portals Section -->
+    <section id="portals" class="section bg-white">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">
+                    Integração com os Principais Portais
+                </h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600);">
+                    Publique seus imóveis em todos os grandes portais com apenas um clique.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8" style="align-items: center;">
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/zapimoveis.png" alt="ZAP Imóveis" style="max-width: 120px; max-height: 60px; margin: 0 auto;" />
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/vivareal.png" alt="VivaReal" style="max-width: 120px; max-height: 60px; margin: 0 auto;" />
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/olx.png" alt="OLX" style="max-width: 120px; max-height: 60px; margin: 0 auto;" />
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <img src="https://www.imobibrasil.com.br/imagens/site-para-imobiliarias/marcas/imovelweb.png" alt="ImóvelWeb" style="max-width: 120px; max-height: 60px; margin: 0 auto;" />
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/casa_mineira.png" alt="Casa Mineira" style="max-width: 120px; max-height: 60px; margin: 0 auto;" />
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border: 1px solid var(--gray-200); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/chavesnamao.png" alt="Chaves na Mão" style="max-width: 120px; max-height: 60px; margin: 0 auto;" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section (placeholder for navigation) -->
+    <section id="clients" class="section bg-gray-50">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 style="font-size: 2.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">
+                    Nossos Clientes
+                </h2>
+                <p style="font-size: 1.125rem; color: var(--gray-600);">
+                    Mais de 15.000 imobiliárias confiam no ImobiBrasil para gerenciar seus negócios.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background: linear-gradient(135deg, var(--gray-900), var(--gray-800));">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 2.25rem; font-weight: 700; color: white; margin-bottom: 1rem;">
+                Transforme sua Imobiliária Hoje
+            </h2>
+            <p style="font-size: 1.125rem; color: var(--gray-300); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Junte-se a mais de 15.000 imobiliárias que já confiam no ImobiBrasil para gerenciar seus negócios.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/5518988227436" class="btn-primary">
+                    Teste Grátis por 7 Dias
+                    <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                </a>
+                <a href="https://wa.me/5518988227436" class="btn-secondary">
+                    Falar no WhatsApp
+                    <i data-lucide="message-circle" class="w-5 h-5 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--gray-900); color: white; padding: 3rem 0 1rem;">
+        <div class="container">
+            <div class="grid grid-cols-3 gap-8" style="margin-bottom: 2rem;">
+                <div>
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-green), var(--dark-green)); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-right: 0.75rem;">
+                            <span style="color: white; font-weight: bold; font-size: 1.125rem;">IB</span>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.25rem;">ImobiBrasil</span>
+                    </div>
+                    <p style="color: var(--gray-400); margin-bottom: 1rem;">Sistema para Imobiliárias e Corretores</p>
+                    <p style="color: var(--gray-400); font-size: 0.875rem;">
+                        Avenida Manoel Goulart, 505 - Sala 43<br>
+                        Centro, Presidente Prudente / SP<br>
+                        CNPJ: 13.326.364/0001-08
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 600; margin-bottom: 1rem;">Atendimento</h4>
+                    <p style="color: var(--gray-400); margin-bottom: 0.5rem;">Segunda a Sexta: 08:00 às 18:00h</p>
+                    <div style="color: var(--gray-400); font-size: 0.875rem;">
+                        <p>(18) 3222-0557 - SP - Presidente Prudente</p>
+                        <p>(11) 4063-6343 - SP - São Paulo</p>
+                        <p>(21) 4063-6693 - RJ - Rio de Janeiro</p>
+                        <p>(31) 4062-7793 - MG - Belo Horizonte</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 600; margin-bottom: 1rem;">WhatsApp</h4>
+                    <div style="color: var(--gray-400);">
+                        <a href="https://wa.me/5518988227436" style="color: var(--primary-green); text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                            Comercial - Vendas
+                        </a>
+                        <a href="https://wa.me/5518991643479" style="color: var(--primary-green); text-decoration: none; display: block;">
+                            Suporte Técnico
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--gray-700); padding-top: 2rem; text-align: center; color: var(--gray-400);">
+                <p>&copy; 2024 ImobiBrasil. Todos os direitos reservados.</p>
+                <p style="margin-top: 0.5rem;">Eleito o melhor sistema de gestão pelo Conecta Imobi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn i');
+
+            if (mobileMenu && mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                if (menuBtn) {
+                    menuBtn.setAttribute('data-lucide', 'menu');
+                }
+            } else if (mobileMenu) {
+                mobileMenu.classList.add('open');
+                if (menuBtn) {
+                    menuBtn.setAttribute('data-lucide', 'x');
+                }
+            }
+
+            // Reinitialize icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn i');
+
+            if (mobileMenu) {
+                mobileMenu.classList.remove('open');
+            }
+            if (menuBtn) {
+                menuBtn.setAttribute('data-lucide', 'menu');
+            }
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Smooth scrolling for anchor links
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Portal hover effects
+            const portalCards = document.querySelectorAll('#portais .grid > div');
+            portalCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

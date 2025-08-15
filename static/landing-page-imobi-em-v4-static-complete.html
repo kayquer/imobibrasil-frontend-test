@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#2ca62f"/>
+    <meta name="description" content="ImobiBrasil V4 - Sistema Completo para Imobiliária, CRM e Funil de Vendas. Integração com Portais, WhatsApp Lead. Teste grátis por 7 dias!"/>
+    <title>ImobiBrasil V4 - Sistema para Imobiliária, CRM e Funil de Vendas</title>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* ImobiBrasil Landing Page - Green Theme */
+        :root {
+          /* Foundation Colors - Adapted for ImobiBrasil */
+          --bg-page: #FFFFFF;
+          --bg-card: #FFFFFF;
+          --bg-section: rgba(0, 0, 0, 0.02);
+          
+          /* Text Hierarchy */
+          --text-primary: rgb(0, 55, 32);
+          --text-body: rgb(14, 15, 12);
+          --text-secondary: rgb(131, 146, 140);
+          --text-muted: rgb(175, 183, 180);
+          
+          /* Border Colors */
+          --border-light: rgba(0, 0, 0, 0.1);
+          --border-medium: rgba(0, 0, 0, 0.2);
+          --border-strong: rgba(0, 0, 0, 0.3);
+          
+          /* Brand Colors - ImobiBrasil Green */
+          --accent-primary: #2ca62f;
+          --accent-strong: #248a27;
+          --accent-text: #2ca62f;
+          --accent-wash: rgba(44, 166, 47, 0.1);
+          
+          /* Gradients */
+          --gradient-hero: radial-gradient(at 53% 78%, rgba(44, 166, 47, 0.2) 0px, transparent 50%), 
+                           radial-gradient(at 71% 91%, rgba(44, 166, 47, 0.15) 0px, transparent 50%), 
+                           radial-gradient(at 31% 91%, rgba(255, 193, 7, 0.1) 0px, transparent 50%);
+          --gradient-button: linear-gradient(135deg, var(--accent-primary), var(--accent-strong));
+        }
+
+        /* Reset and Base */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: system-ui, sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto';
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          line-height: 1.6;
+          color: var(--text-body);
+          background: var(--bg-page);
+        }
+
+        /* Typography Scale - Responsive */
+        .heading-1 { 
+          font-family: system-ui, sans-serif; 
+          font-weight: 700; 
+          font-size: clamp(2.25rem, 5vw, 4.5rem); 
+          line-height: 0.9; 
+          letter-spacing: -0.02em; 
+          color: var(--text-primary);
+          margin-bottom: 1rem;
+        }
+
+        .heading-2 { 
+          font-family: system-ui, sans-serif; 
+          font-weight: 600; 
+          font-size: clamp(1.875rem, 4vw, 3rem); 
+          line-height: 0.95; 
+          letter-spacing: -0.015em; 
+          color: var(--text-primary);
+          margin-bottom: 1rem;
+        }
+
+        .heading-3 { 
+          font-family: system-ui, sans-serif; 
+          font-weight: 600; 
+          font-size: clamp(1.25rem, 3vw, 1.5rem); 
+          line-height: 1.2; 
+          letter-spacing: -0.01em; 
+          color: var(--text-primary);
+          margin-bottom: 0.5rem;
+        }
+
+        .body-large { 
+          font-family: system-ui, sans-serif; 
+          font-weight: 400; 
+          font-size: clamp(1.125rem, 2.5vw, 1.25rem); 
+          line-height: 1.6; 
+          color: var(--text-body); 
+        }
+
+        .body-medium { 
+          font-family: system-ui, sans-serif; 
+          font-weight: 400; 
+          font-size: clamp(1rem, 2vw, 1.125rem); 
+          line-height: 1.5; 
+          color: var(--text-body); 
+        }
+
+        .body-small { 
+          font-family: system-ui, sans-serif; 
+          font-weight: 400; 
+          font-size: 0.875rem; 
+          line-height: 1.4; 
+          color: var(--text-secondary); 
+        }
+
+        /* Layout Components */
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 1rem;
+        }
+
+        .section {
+          padding: 4rem 0;
+        }
+
+        .section-alt {
+          background: var(--bg-section);
+        }
+
+        .section-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+          color: var(--accent-primary);
+          font-weight: 600;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.5rem;
+        }
+
+        /* Navigation */
+        .nav-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid var(--border-light);
+          padding: 1rem 0;
+        }
+
+        .nav-header .container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .nav-logo {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-weight: 700;
+          font-size: 1.25rem;
+          color: var(--text-primary);
+          text-decoration: none;
+        }
+
+        .nav-menu {
+          display: none;
+          gap: 2rem;
+        }
+
+        .nav-link {
+          color: var(--text-secondary);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+          color: var(--accent-primary);
+        }
+
+        .nav-cta {
+          display: none;
+          gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+          background: none;
+          border: none;
+          color: var(--text-primary);
+          cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+          .nav-menu {
+            display: flex;
+          }
+          .nav-cta {
+            display: flex;
+          }
+          .mobile-menu-btn {
+            display: none;
+          }
+        }
+
+        /* Buttons */
+        .btn-primary {
+          background: var(--gradient-button);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 0.75rem 1.5rem;
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 20px rgba(44, 166, 47, 0.3);
+        }
+
+        .btn-secondary {
+          background: transparent;
+          color: var(--accent-primary);
+          border: 1px solid var(--accent-primary);
+          border-radius: 8px;
+          padding: 0.75rem 1.5rem;
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+          background: var(--accent-primary);
+          color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+          background: var(--gradient-hero);
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          padding: 6rem 0 4rem;
+        }
+
+        .hero-content {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .hero-metrics {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 2rem;
+          margin: 3rem 0;
+        }
+
+        .metric-item {
+          text-align: center;
+        }
+
+        .metric-value {
+          display: block;
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--accent-primary);
+          margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+          color: var(--text-secondary);
+          font-weight: 500;
+        }
+
+        /* Features Grid */
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+
+        .feature-card {
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: 12px;
+          padding: 2rem;
+          text-align: center;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+          width: 60px;
+          height: 60px;
+          background: var(--accent-wash);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 1rem;
+          color: var(--accent-primary);
+        }
+
+        /* Portals Grid */
+        .portals-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 2rem;
+          align-items: center;
+        }
+
+        .portal-logo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: 8px;
+          transition: transform 0.2s ease;
+        }
+
+        .portal-logo:hover {
+          transform: scale(1.05);
+        }
+
+        .portal-logo img {
+          max-width: 120px;
+          max-height: 60px;
+          object-fit: contain;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+        }
+
+        .pricing-card {
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: 12px;
+          padding: 2rem;
+          position: relative;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pricing-card.recommended {
+          border-color: var(--accent-primary);
+          box-shadow: 0 12px 32px rgba(44, 166, 47, 0.15);
+        }
+
+        .pricing-card.recommended::before {
+          content: "Recomendado";
+          position: absolute;
+          top: -12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--accent-primary);
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 600;
+        }
+
+        .pricing-header {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+
+        .pricing-name {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: 0.5rem;
+        }
+
+        .pricing-description {
+          color: var(--text-secondary);
+          margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+          display: flex;
+          align-items: baseline;
+          justify-content: center;
+          gap: 0.25rem;
+        }
+
+        .price-currency {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: var(--text-secondary);
+        }
+
+        .price-value {
+          font-size: 3rem;
+          font-weight: 700;
+          color: var(--accent-primary);
+        }
+
+        .price-period {
+          font-size: 1rem;
+          color: var(--text-secondary);
+        }
+
+        .pricing-features {
+          list-style: none;
+          margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+          padding: 0.5rem 0;
+          border-bottom: 1px solid var(--border-light);
+          color: var(--text-body);
+        }
+
+        .pricing-features li:last-child {
+          border-bottom: none;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+
+        .testimonial-card {
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: 12px;
+          padding: 2rem;
+        }
+
+        .testimonial-content {
+          font-style: italic;
+          margin-bottom: 1.5rem;
+          color: var(--text-body);
+        }
+
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .testimonial-avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .testimonial-info h4 {
+          font-weight: 600;
+          color: var(--text-primary);
+          margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+          color: var(--text-secondary);
+          font-size: 0.875rem;
+        }
+
+        /* FAQ */
+        .faq-list {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .faq-item {
+          border: 1px solid var(--border-light);
+          border-radius: 8px;
+          margin-bottom: 1rem;
+          overflow: hidden;
+        }
+
+        .faq-question {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 1.5rem;
+          text-align: left;
+          font-weight: 600;
+          color: var(--text-primary);
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: background 0.2s ease;
+        }
+
+        .faq-question:hover {
+          background: var(--bg-section);
+        }
+
+        .faq-answer {
+          padding: 0 1.5rem 1.5rem;
+          color: var(--text-body);
+          display: none;
+        }
+
+        .faq-item.active .faq-answer {
+          display: block;
+        }
+
+        /* Footer */
+        .footer {
+          background: var(--text-primary);
+          color: white;
+          padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: white;
+        }
+
+        .footer-section p,
+        .footer-section a {
+          color: rgba(255, 255, 255, 0.8);
+          text-decoration: none;
+          display: block;
+          margin-bottom: 0.5rem;
+          transition: color 0.2s ease;
+        }
+
+        .footer-section a:hover {
+          color: white;
+        }
+
+        .footer-bottom {
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          padding-top: 2rem;
+          text-align: center;
+          color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-bottom p {
+          margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        .animate-slide-up {
+          animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .hero-metrics {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          
+          .features-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .pricing-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .testimonials-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="nav-header">
+        <div class="container">
+            <a href="#home" class="nav-logo">
+                <img
+                    src="https://customer-assets.emergentagent.com/job_156e9131-4dda-439d-8ddd-0737f124f04e/artifacts/1ttmxmid_imobibrasil.png"
+                    alt="ImobiBrasil"
+                    style="height: 32px;"
+                />
+                ImobiBrasil
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#recursos" class="nav-link">Recursos</a>
+                <a href="#planos" class="nav-link">Planos</a>
+                <a href="#clientes" class="nav-link">Clientes</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <div class="nav-cta">
+                <a href="#demo" class="btn-secondary">Ver Demo</a>
+                <a href="#teste" class="btn-primary">Teste Grátis</a>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content animate-slide-up">
+                <h1 class="heading-1">Sistema Completo para Imobiliárias</h1>
+                <p class="body-large" style="margin-bottom: 2rem;">
+                    CRM, Funil de Vendas, Integração com Portais e Automação Inteligente
+                </p>
+                <p class="body-medium" style="margin-bottom: 2rem; opacity: 0.8;">
+                    Oferecemos uma excelente experiência em navegação, com a união de um CRM prático e eficaz para imobiliárias e corretores.
+                </p>
+
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <span class="metric-value" id="metric-imobiliarias">+15.000</span>
+                        <span class="metric-label">Imobiliárias Ativas</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value" id="metric-imoveis">+2M</span>
+                        <span class="metric-label">Imóveis Gerenciados</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value" id="metric-vendas">+40%</span>
+                        <span class="metric-label">Aumento nas Vendas</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#teste" class="btn-primary" style="min-width: 200px;">
+                        Teste Grátis por 7 Dias
+                    </a>
+                    <a href="#recursos" class="btn-secondary" style="min-width: 200px;">
+                        Conheça os Recursos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="recursos">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Recursos Principais</p>
+                <h2 class="heading-2">Sistema Completo para sua Imobiliária</h2>
+                <p class="body-large">
+                    Todas as ferramentas que você precisa para gerenciar sua imobiliária com eficiência e profissionalismo.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 class="heading-3">CRM Negócios</h3>
+                    <p class="body-medium">Defina e acompanhe toda jornada de compra do seu cliente</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="trending-up" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 class="heading-3">Funil de Vendas</h3>
+                    <p class="body-medium">Organize de maneira efetiva suas negociações do início ao fim</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="home" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 class="heading-3">Imóveis Compatíveis</h3>
+                    <p class="body-medium">A ferramenta ideal para encontrar o imóvel certo para seu cliente</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="brain" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 class="heading-3">Inteligência Artificial</h3>
+                    <p class="body-medium">Gerador automático de descrições profissionais para imóveis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="message-square" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 class="heading-3">WhatsApp Lead</h3>
+                    <p class="body-medium">Faça a captação de contatos para WhatsApp e se aproxime do cliente</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="file-text" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 class="heading-3">Gerador de Contratos</h3>
+                    <p class="body-medium">Crie diversos contratos preenchendo poucas informações necessárias</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portals Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Integração Completa</p>
+                <h2 class="heading-2">Conecte-se aos Principais Portais</h2>
+                <p class="body-large">
+                    Gerencie facilmente a publicação dos seus imóveis e destaques em todos os grandes portais do Brasil.
+                </p>
+            </div>
+
+            <div class="portals-grid">
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/zapimoveis.png" alt="ZAP Imóveis" />
+                </div>
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/vivareal.png" alt="VivaReal" />
+                </div>
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/olx.png" alt="OLX" />
+                </div>
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/site-para-imobiliarias/marcas/imovelweb.png" alt="ImóvelWeb" />
+                </div>
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/novo/casa_mineira.png" alt="Casa Mineira" />
+                </div>
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/orulo.jpg" alt="Órulo" />
+                </div>
+                <div class="portal-logo">
+                    <img src="https://www.imobibrasil.com.br/imagens/parceiros/chavesnamao.png" alt="Chaves na Mão" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="planos">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Planos e Preços</p>
+                <h2 class="heading-2">Escolha o Plano Ideal para seu Negócio</h2>
+                <p class="body-large">
+                    Sem taxas de inscrição, sem tempo mínimo de permanência e sem multa por cancelamento.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Simples</h3>
+                        <p class="pricing-description">Serviço inicial para o seu orçamento</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">R$</span>
+                            <span class="price-value">54,99</span>
+                            <span class="price-period">/mês</span>
+                        </div>
+                    </div>
+
+                    <ul class="pricing-features">
+                        <li>Cadastro de até 30 imóveis</li>
+                        <li>32 fotos por imóvel</li>
+                        <li>1 Conta de E-mail (via POP3)</li>
+                        <li>5 Catálogos de Imóveis</li>
+                        <li>5 Hotsites Diversos</li>
+                        <li>Usuário único do Sistema</li>
+                        <li>Inteligência Artificial - 5 descrições</li>
+                    </ul>
+
+                    <a href="#teste" class="btn-secondary" style="width: 100%;">Teste Grátis</a>
+                </div>
+
+                <div class="pricing-card recommended">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Essencial</h3>
+                        <p class="pricing-description">Para quem está em constante evolução</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">R$</span>
+                            <span class="price-value">74,99</span>
+                            <span class="price-period">/mês</span>
+                        </div>
+                    </div>
+
+                    <ul class="pricing-features">
+                        <li>Cadastro de até 350 imóveis</li>
+                        <li>50 Fotos por Imóvel</li>
+                        <li>3 Contas de E-mail (via POP3)</li>
+                        <li>10 Catálogos de Imóveis</li>
+                        <li>10 Hotsites Diversos</li>
+                        <li>3 Usuários do Sistema</li>
+                        <li>Inteligência Artificial - 10 descrições</li>
+                        <li>Esteira de Leads</li>
+                        <li>Certificado SSL</li>
+                    </ul>
+
+                    <a href="#teste" class="btn-primary" style="width: 100%;">Teste Grátis</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Impulso</h3>
+                        <p class="pricing-description">Eleve sua jornada para o próximo patamar</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">R$</span>
+                            <span class="price-value">119,99</span>
+                            <span class="price-period">/mês</span>
+                        </div>
+                    </div>
+
+                    <ul class="pricing-features">
+                        <li>Cadastro de até 1000 imóveis</li>
+                        <li>64 Fotos por Imóvel</li>
+                        <li>5 Contas de E-mail (via POP3)</li>
+                        <li>20 Catálogos de Imóveis</li>
+                        <li>20 Hotsites Diversos</li>
+                        <li>5 Usuários do Sistema</li>
+                        <li>Inteligência Artificial - 15 descrições</li>
+                        <li>Esteira de Leads</li>
+                        <li>Certificado SSL</li>
+                    </ul>
+
+                    <a href="#teste" class="btn-secondary" style="width: 100%;">Teste Grátis</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Expansão</h3>
+                        <p class="pricing-description">Para negócios que exigem a mais alta performance</p>
+                        <div class="pricing-price">
+                            <span class="price-currency">R$</span>
+                            <span class="price-value">249,99</span>
+                            <span class="price-period">/mês</span>
+                        </div>
+                    </div>
+
+                    <ul class="pricing-features">
+                        <li>Cadastro de até 3000 imóveis</li>
+                        <li>64 Fotos por Imóvel</li>
+                        <li>15 Contas de E-mail (via POP3)</li>
+                        <li>40 Catálogos de Imóveis</li>
+                        <li>40 Hotsites Diversos</li>
+                        <li>15 Usuários do Sistema</li>
+                        <li>Inteligência Artificial - 50 descrições</li>
+                        <li>Esteira de Leads</li>
+                        <li>Habilitação Órulo e DWV</li>
+                        <li>Certificado SSL</li>
+                    </ul>
+
+                    <a href="#teste" class="btn-secondary" style="width: 100%;">Teste Grátis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section section-alt" id="clientes">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Nossos Clientes</p>
+                <h2 class="heading-2">Imobiliárias que Confiam na ImobiBrasil</h2>
+                <p class="body-large">
+                    Veja o que nossos clientes falam sobre os resultados obtidos com nosso sistema.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"O ImobiBrasil transformou nossa gestão imobiliária. Aumento significativo nas vendas com o CRM integrado."</p>
+                    <div class="testimonial-author">
+                        <img
+                            src="https://www.imobibrasil.com.br/imagens/clientes/jhr.jpg"
+                            alt="JHR Imóveis de Luxo"
+                            class="testimonial-avatar"
+                        />
+                        <div class="testimonial-info">
+                            <h4>JHR Imóveis de Luxo</h4>
+                            <p>www.jhrimoveisdeluxo.com.br</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Sistema completo e intuitivo. A integração com portais economiza horas de trabalho diariamente."</p>
+                    <div class="testimonial-author">
+                        <img
+                            src="https://www.imobibrasil.com.br/imagens/clientes/ski.jpg"
+                            alt="Ski Imóveis"
+                            class="testimonial-avatar"
+                        />
+                        <div class="testimonial-info">
+                            <h4>Ski Imóveis</h4>
+                            <p>www.skiimoveis.com.br</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Melhor custo-benefício do mercado. Atendimento excepcional e recursos que realmente funcionam."</p>
+                    <div class="testimonial-author">
+                        <img
+                            src="https://www.imobibrasil.com.br/imagens/clientes/residenza.jpg"
+                            alt="Residenza Imóveis"
+                            class="testimonial-avatar"
+                        />
+                        <div class="testimonial-info">
+                            <h4>Residenza Imóveis</h4>
+                            <p>www.residenzainvest.com.br</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Dúvidas Frequentes</p>
+                <h2 class="heading-2">Perguntas e Respostas</h2>
+                <p class="body-large">
+                    Tire suas dúvidas sobre nosso sistema e serviços.
+                </p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Por que escolher a ImobiBrasil?
+                        <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O ImobiBrasil tem o melhor atendimento do mercado e um CRM completo que permite a abordagem livre dos leads interessados. Os clientes ImobiBrasil vendem mais porque nosso site é otimizado para o Google e nosso sistema é integrado com WhatsApp e portais de imóveis.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        O CRM possui integração com portais de anúncios?
+                        <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, o ImobiBrasil oferece integração com todos os grandes portais do Brasil, otimizando o seu tempo, já que você não precisa perdê-lo cadastrando manualmente seus imóveis em cada portal.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        É possível migrar meus imóveis de outro sistema?
+                        <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, para a importação é necessário um XML nos formatos tradicionais dos portais (ZapImóveis, VivaReal ou ImóvelWeb). Também é possível fazer a importação por planilhas Excel.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Existe tempo mínimo de permanência?
+                        <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>NÃO! Para nós, sua satisfação é o que importa. Por isso, não exigimos nenhum tempo mínimo de permanência, nem geramos contrato de fidelidade. Você estará totalmente livre de multas e taxas extras.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Como funciona o suporte?
+                        <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nosso atendimento é o melhor do mercado. Em todos os canais (WhatsApp, Telefone, E-mail e Chat), você terá atendimento diretamente com pessoas, não robôs. Temos também uma Central de Ajuda completa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-alt" id="teste">
+        <div class="container" style="text-align: center;">
+            <h2 class="heading-2" style="margin-bottom: 1rem;">
+                Transforme sua Imobiliária com ImobiBrasil
+            </h2>
+            <p class="body-large" style="margin-bottom: 2rem;">
+                Comece hoje mesmo e descubra por que mais de 15.000 imobiliárias confiam em nosso sistema.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/5518988227436" class="btn-primary" style="min-width: 200px;">
+                    Teste Grátis por 7 Dias
+                </a>
+                <a href="https://wa.me/5518988227436" class="btn-secondary" style="min-width: 200px;">
+                    Falar com Consultor
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ImobiBrasil</h4>
+                    <p>Sistema para Imobiliárias e Corretores</p>
+                    <p>Avenida Manoel Goulart, 505 - Sala 43, Centro, Presidente Prudente / SP</p>
+                    <p>CNPJ: 13.326.364/0001-08</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Atendimento</h4>
+                    <p>Segunda a Sexta: 08:00 às 18:00h</p>
+                    <a href="tel:+5518322205557">(18) 3222-0557 - SP - Presidente Prudente</a>
+                    <a href="tel:+551140636343">(11) 4063-6343 - SP - São Paulo</a>
+                    <a href="tel:+552140636693">(21) 4063-6693 - RJ - Rio de Janeiro</a>
+                    <a href="tel:+553140627793">(31) 4062-7793 - MG - Belo Horizonte</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>WhatsApp</h4>
+                    <a href="https://wa.me/5518988227436">
+                        Comercial - Vendas
+                    </a>
+                    <a href="https://wa.me/5518991643479">
+                        Suporte Técnico
+                    </a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Acompanhe</h4>
+                    <a href="https://www.facebook.com/imobibrasil" target="_blank" rel="noopener noreferrer">
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/imobibrasil/" target="_blank" rel="noopener noreferrer">
+                        Instagram
+                    </a>
+                    <a href="https://www.youtube.com/imobibrasilbr" target="_blank" rel="noopener noreferrer">
+                        YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ImobiBrasil. Todos os direitos reservados.</p>
+                <p>Eleito o melhor sistema de gestão pelo Conecta Imobi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            // Simple mobile menu implementation
+            alert('Menu mobile - implementar conforme necessário');
+        }
+
+        // FAQ toggle functionality
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('[data-lucide]');
+                icon.setAttribute('data-lucide', 'chevron-down');
+            });
+
+            // Open clicked item if it wasn't already open
+            if (!isActive) {
+                faqItem.classList.add('active');
+                const icon = button.querySelector('[data-lucide]');
+                icon.setAttribute('data-lucide', 'chevron-up');
+            }
+
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Animated metrics on scroll
+        function animateMetrics() {
+            const metrics = document.querySelectorAll('.metric-value');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideUp 0.8s ease-out';
+                    }
+                });
+            });
+
+            metrics.forEach(metric => observer.observe(metric));
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', animateMetrics);
+    </script>
+</body>
+</html>
