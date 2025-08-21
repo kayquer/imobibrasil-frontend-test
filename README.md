@@ -14,14 +14,14 @@ Criar uma landing page única para a **ImobiBrasil** que combine os melhores ele
 
 - **Design Moderno** com gradientes, animações e elementos visuais atrativos.
 - **Layout responsivo** (mobile-first).
-- Pelo menos **7 seções completas**.
+- Pelo menos **5~7 seções completas** sendo, duas criadas por você e o restante adaptadas dos exemplos.
+- Seções obrigatórias: caracteristicas do produto, depoimentos, integração com portais e tabela de planos.
 - Uso de **HTML5 semântico**, **CSS3** (Flexbox e Grid) e **JavaScript ES6+** modularizado.
 - Ícones (Lucide ou similar).
 - Funcionalidades: tabs, contadores animados, hover effects, accordion no FAQ, navegação mobile funcional.
 - No mínimo **3 animações customizadas** (scroll, hover e carregamento).
 - Otimização de imagens (preferencialmente WebP).
 - Carregamento em até 3 segundos.
-- Acessibilidade básica (`aria-*`, roles).
 - Pontuação mínima de 80 no Google Lighthouse (Performance e Acessibilidade).
 
 ## 🛠️ Instruções para o Candidato
@@ -30,7 +30,7 @@ Criar uma landing page única para a **ImobiBrasil** que combine os melhores ele
 2. Garantir que a página seja totalmente responsiva.
 3. É permitido usar conteúdos e recursos dos links fornecidos.
 4. Entregar HTML, CSS e JS separados.
-5. Incluir breve documentação e README com instruções.
+5. Incluir breve documentação e README com suas observações.
 6. (Opcional) Incluir diagrama simples da estrutura de arquivos.
 
 ## ✅ Critérios de Avaliação
