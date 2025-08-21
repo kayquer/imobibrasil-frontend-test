@@ -42,7 +42,7 @@ Criar uma landing page única para a **ImobiBrasil** que combine os melhores ele
 
 ## ⏳ Prazo
 
-O candidato terá **7 dias** para execução e entrega.
+O candidato terá **5 dias** para execução e entrega.
 
 ## 🌟 Diferenciais
 
